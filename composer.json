@@ -1,0 +1,15 @@
+{
+    "name": "beloplotov/balance",
+    "description": "Checking the brackets in equations.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladimir Beloplotov",
+            "email": "cgartscorp@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1"
+    }
+}
