@@ -1,41 +1,49 @@
 <?php
 namespace Beloplotov;
+
 class Balance
 {
-    private $str;
+   public function balanceBrackets($string)
+  {
+      try {
+          preg_match_all('/[^()0-9\r\n\t\s]/', $string, $value, PREG_SET_ORDER, 0);
+          if (!isset($value)) {
+              throw new \InvalidArgumentException('Недопустимые символы');
+          }
+          $arrayString = str_split($string);
+          var_dump($arrayString);
+            $amountBrackets=0;
+          for ($i = 0;
+               $i <= count($arrayString);
+               $i++) {
+              if ($arrayString[$i] == '(') {
 
-    public function __construct($str)
-    {
-        $this->str=$str;
-    }
+                  $amountBrackets++;
+              }
 
-  public function proverka()
-    {
-        $massiveStr = str_split($this->str);
+              if ($arrayString[$i] == ')') {
 
-        for ($i = 0;
-             $i <= count($massiveStr);
-             $i++) {
-            if ($massiveStr[$i] == "(") {
+                  $amountBrackets--;
+              }
+              if ($amountBrackets < 0) {
+                  throw new \Exception("Неправильно стоит скобка");
+              }
+          }
+          if ($amountBrackets == 1) {
+              throw new \Exception("Где то не закрыта скобка!");
+          }
+          if ($amountBrackets > 1) {
+                throw new \Exception("Где то не закрыты" . $amountBrackets . " скобки");
+          }
+          if ($amountBrackets == 0) {
+              throw new \Exception("Выражение составленно верно, скобки все закрыты!");
+          }
+      }catch (\InvalidArgumentException $e){
+         echo $e->getMessage();
+      }catch (\Exception $e){
+          echo $e->getMessage();
+      }
+      return true;
+  }
 
-                $num = $num + 1;
-            }
-
-            if ($massiveStr[$i] == ")") {
-
-                $num = $num - 1;
-            }
-            if ($num < 0) {
-                echo "Неправильно стоит скобка";
-                die;
-            }
-        }
-        if ($num == 1) {
-            echo "Где то не закрыта скобка!";
-        } elseif ($num > 1) {
-            echo "Где то не закрыты" . $num . " скобки";
-        } elseif ($num == 0) {
-            echo "Скобки все закрыты";
-        }
-    }
 }
