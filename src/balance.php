@@ -11,7 +11,7 @@ class Balance
               throw new \InvalidArgumentException('Недопустимые символы');
           }
           $arrayString = str_split($string);
-          var_dump($arrayString);
+
             $amountBrackets=0;
           for ($i = 0;
                $i <= count($arrayString);
