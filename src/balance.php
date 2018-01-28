@@ -6,8 +6,8 @@ class Balance
    public function balanceBrackets($string)
   {
       try {
-          preg_match_all('/[^()0-9\r\n\t\s]/', $string, $value, PREG_SET_ORDER, 0);
-          if (!isset($value)) {
+          preg_match_all('/[^()\r\s\n\t]/', $string, $value, PREG_SET_ORDER, 0);
+          if (!empty($value)) {
               throw new \InvalidArgumentException('Недопустимые символы');
           }
           $arrayString = str_split($string);
@@ -36,7 +36,7 @@ class Balance
                 throw new \Exception("Где то не закрыты" . $amountBrackets . " скобки");
           }
           if ($amountBrackets == 0) {
-              throw new \Exception("Выражение составленно верно, скобки все закрыты!");
+            throw new \Exception("Выражение составленно верно, скобки все закрыты!");
           }
       }catch (\InvalidArgumentException $e){
          echo $e->getMessage();
